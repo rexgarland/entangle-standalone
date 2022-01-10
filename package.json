@@ -8,8 +8,8 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "tsc src/index1.ts && node src/index1.js && browserify src/tangle/example.js -o dist/bundle.js && tsc src/index1.ts && node src/index1.js",
-    "tangle": "browserify src/tangle/example.js -o dist/bundle.js && node src/tangle/export.js"
+    "test": "node src/index1.js && npm run tangle && node src/index1.js",
+    "tangle": "browserify src/tangle/example.js -o dist/bundle.js"
   },
   "keywords": [],
   "author": "",
