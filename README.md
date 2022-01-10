@@ -1,3 +1,3 @@
-# remangle
+# mangle-standalone
 
-A Mangle parser.
+Build standalone HTML files for Tangle.js
