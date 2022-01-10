@@ -1,6 +1,6 @@
 {
   "name": "mangle-standalone",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "src/index.js",
   "description": "Build a standalone html file from mangle",
   "type": "module",
@@ -15,14 +15,15 @@
   "license": "MIT",
   "dependencies": {
     "browserify": "^17.0.0",
+    "coffeescript": "^2.6.1",
+    "handlebars": "^4.7.7",
     "js-yaml": "^4.1.0",
+    "mootools": "^1.5.2",
     "rehype-stringify": "^9.0.2",
     "remark": "^14.0.2",
     "remark-rehype": "^10.1.0",
-    "yargs": "^17.3.1",
-    "coffeescript": "^2.6.1",
-    "handlebars": "^4.7.7",
-    "mootools": "^1.5.2",
-    "sprintf-js": "^1.1.2"
+    "sprintf-js": "^1.1.2",
+    "tempy": "^2.0.0",
+    "yargs": "^17.3.1"
   }
 }

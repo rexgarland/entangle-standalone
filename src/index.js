@@ -8,6 +8,7 @@ import path from "path";
 import Handlebars from "handlebars";
 
 import browserify from 'browserify'
+import tempy from 'tempy'
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -27,9 +28,10 @@ export default function mangle(mangleFile, outFile) {
 
 
 	// browserify
+	var bundleFile = tempy.file()
 	var b = browserify()
 	b.add(path.join(__dirname, 'tangle/example.js'))
-	var out = fs.createWriteStream('dist/bundle.js', 'utf8')
+	var out = fs.createWriteStream(bundleFile, 'utf8')
 	b.bundle().pipe(out)
 
 	out.on('finish', () => {
@@ -41,7 +43,7 @@ export default function mangle(mangleFile, outFile) {
 		// get data
 		const data = {
 			markup,
-			script: fs.readFileSync('dist/bundle.js', 'utf8')
+			script: fs.readFileSync(bundleFile, 'utf8')
 		}
 
 		// save
