@@ -10,3 +10,5 @@ npm run build -- examples/cookies.mangle
 ```
 
 Then open `dist/document.html`.
+
+![](images/cookies.png)
