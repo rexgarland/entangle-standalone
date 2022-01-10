@@ -7,16 +7,18 @@ import { fileURLToPath } from 'url';
 import path from "path";
 import Handlebars from "handlebars";
 
+import browserify from 'browserify'
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-function build(mangleFile, outFile) {
+export default function mangle(mangleFile, outFile) {
 
 	const mangle = fs.readFileSync(mangleFile, "utf8");
 	const { markup, code } = parse(mangle);
 
 	// render js
 	const jsSource = fs.readFileSync(
-		path.join(__dirname, "tangle/example.template.js"),
+		path.join(__dirname, "../templates/example.template.js"),
 		"utf8"
 	);
 	const jsTemplate = Handlebars.compile(jsSource);
@@ -25,8 +27,6 @@ function build(mangleFile, outFile) {
 
 
 	// browserify
-
-	import browserify from 'browserify'
 	var b = browserify()
 	b.add(path.join(__dirname, 'tangle/example.js'))
 	var out = fs.createWriteStream('dist/bundle.js', 'utf8')
@@ -35,13 +35,11 @@ function build(mangleFile, outFile) {
 	out.on('finish', () => {
 
 		// get template
-		const html = fs.readFileSync(path.join(__dirname, 'tangle/example.template.html'), 'utf8');
+		const html = fs.readFileSync(path.join(__dirname, '../templates/example.template.html'), 'utf8');
 		const template = Handlebars.compile(html);
 
 		// get data
 		const data = {
-			style: fs.readFileSync(path.join(__dirname, 'tangle/example.css'), 'utf8'),
-			tangleKitStyle: fs.readFileSync(path.join(__dirname, 'tangle/TangleKit/TangleKit.css'), 'utf8'),
 			markup,
 			script: fs.readFileSync('dist/bundle.js', 'utf8')
 		}
@@ -50,8 +48,4 @@ function build(mangleFile, outFile) {
 		const output = template(data);
 		fs.writeFileSync(outFile, output, 'utf8');
 	})
-}
-
-module.exports = {
-	build
 }
