@@ -1,8 +1,12 @@
 # mangle-standalone
 
-Build standalone HTML files from a [Mangle](https://github.com/rexgarland/Mangle) doc.
+Build standalone HTML files from a [Mangle](https://github.com/rexgarland/Mangle) doc. 
+
+I built this to try incorporating reactive documents in my blog (WIP).
 
 ## Example
+
+examples/cookies.mangle
 
 ```mangle
 # Cookies
