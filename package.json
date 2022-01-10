@@ -1,6 +1,7 @@
 {
   "name": "remangle",
   "version": "1.0.0",
+  "main": "src/index.js",
   "description": "A Mangle parser.",
   "type": "module",
   "exports": "./index.js",
