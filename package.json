@@ -1,10 +1,9 @@
 {
-  "name": "remangle",
+  "name": "mangle-standalone",
   "version": "1.0.0",
   "main": "src/index.js",
-  "description": "A Mangle parser.",
+  "description": "Build a standalone html file from mangle",
   "type": "module",
-  "exports": "./index.js",
   "directories": {
     "example": "examples"
   },
@@ -13,7 +12,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^17.0.8",
