@@ -8,8 +8,7 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "node src/index1.js && npm run tangle && node src/index1.js",
-    "tangle": "browserify src/tangle/example.js -o dist/bundle.js"
+    "build": "node src/index.js"
   },
   "keywords": [],
   "author": "",
@@ -19,8 +18,10 @@
     "@types/node": "^17.0.8",
     "browserify": "^17.0.0",
     "js-yaml": "^4.1.0",
+    "rehype-stringify": "^9.0.2",
     "remark": "^14.0.2",
-    "remark-rehype": "^10.1.0"
+    "remark-rehype": "^10.1.0",
+    "yargs": "^17.3.1"
   },
   "devDependencies": {
     "@types/browserify": "^12.0.37",

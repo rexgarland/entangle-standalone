@@ -2,7 +2,14 @@ import yaml from "js-yaml";
 import CoffeeScript from "coffeescript";
 import { remark } from "remark";
 import remarkRehype from "remark-rehype";
+import rehypeStringify from 'rehype-stringify'
 import { VFile } from "vfile";
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import Handlebars from "handlebars";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export function split(mangleText) {
 	const [a, b, c] = mangleText.split("\n---\n");
@@ -39,11 +46,11 @@ function attachConfig(config) {
 function trimChars(chars) {
 	return (s) => {
 		var out = s;
-		while (chars.includes(out[0])) {
+		while (out.length>0 && chars.includes(out[0])) {
 			out = out.slice(1);
 		}
-		while (chars.includes(out[out.length - 1])) {
-			out = out.slice(out.length - 1, out.length);
+		while (out.length>0 && chars.includes(out[out.length - 1])) {
+			out = out.slice(0, out.length - 1);
 		}
 		return out;
 	};
@@ -51,7 +58,7 @@ function trimChars(chars) {
 
 const TO_PREPEND_MAX = ["min", "max", "step", "format"];
 
-const TO_EXCLUDE = ["literal"];
+const TO_EXCLUDE = ["literal", "location","initial"];
 
 function renderContent(data) {
 	return (markdown) => {
@@ -75,13 +82,19 @@ function renderContent(data) {
 			const attributesString = Object.keys(attributes)
 				.map((key) => `${key}="${attributes[key]}"`)
 				.join(" ");
-			spans[varName] = `<span ${attributesString}>${innerHTML}</span>`;
+			spans[varName] = `<span data-var="${varName}" ${attributesString}>${innerHTML}</span>`;
 			markdown = markdown.replace(
-				/`\`[^`]*\$\{${varName}\}[^`]*\``/,
-				spans[varName]
+				new RegExp(`\`[^\`]*\\$\\{${varName}\\}[^\`]*\``),
+				// spans[varName]
+				`\{\{\{${varName}\}\}\}`
 			);
 		});
-		return String(remark().use(remarkRehype).processSync(markdown));
+
+		var markup = String(remark().use(remarkRehype).use(rehypeStringify).processSync(markdown));
+		const template = Handlebars.compile(markup)
+		var markup = template(spans)
+
+		return markup
 	};
 }
 
@@ -95,7 +108,7 @@ function renderCode(data) {
 				initialObj[k] = d.initial;
 			});
 		const initial = "const initial=" + JSON.stringify(initialObj);
-		return { initial, updater };
+		return { initial, updater: code.replace(/update/g,'updater') };
 	};
 }
 

@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    const element = document.getElementById("investmentExample");
+    const element = document.getElementById("tangle");
     new Tangle(element,model);
     
 });
