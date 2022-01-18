@@ -1,8 +1,8 @@
 # entangle-standalone
 
-Build standalone HTML files from an [Entangle](https://github.com/rexgarland/Entangle) doc. 
+See [Entangle](https://github.com/rexgarland/Entangle) for the main script. 
 
-I built this to try incorporating reactive documents in my blog (WIP).
+I built this to try incorporating reactive documents in my blog.
 
 ## Example
 
