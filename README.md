@@ -1,14 +1,14 @@
-# mangle-standalone
+# entangle-standalone
 
-Build standalone HTML files from a [Mangle](https://github.com/rexgarland/Mangle) doc. 
+Build standalone HTML files from an [Entangle](https://github.com/rexgarland/Entangle) doc. 
 
 I built this to try incorporating reactive documents in my blog (WIP).
 
 ## Example
 
-examples/cookies.mangle
+examples/cookies.entangle
 
-```mangle
+```entangle
 # Cookies
 
 If you eat `${cookies} cookies`, you will consume `${calories} calories`, or `${percent}%` of your recommended daily intake.
@@ -34,7 +34,7 @@ Compile it with...
 
 ```shell
 npm install
-npm run build -- examples/cookies.mangle
+npm run build -- examples/cookies.entangle
 ```
 
 Then open `dist/document.html`.
