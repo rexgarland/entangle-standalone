@@ -1,3 +1,3 @@
-import mangle from '../src/index.js'
+import entangle from '../src/index.js'
 
-mangle('examples/cookies.mangle','dist/test.html')
+entangle('examples/cookies.entangle','dist/test.html')

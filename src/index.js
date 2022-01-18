@@ -12,10 +12,10 @@ import tempy from 'tempy'
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-export default function mangle(mangleFile, outFile) {
+export default function entangle(entangleFile, outFile) {
 
-	const mangle = fs.readFileSync(mangleFile, "utf8");
-	const { markup, code } = parse(mangle);
+	const entangle = fs.readFileSync(entangleFile, "utf8");
+	const { markup, code } = parse(entangle);
 
 	// render js
 	const jsSource = fs.readFileSync(

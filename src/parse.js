@@ -11,8 +11,8 @@ import Handlebars from "handlebars";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-export function split(mangleText) {
-	const [a, b, c] = mangleText.split("\n---\n");
+export function split(entangleText) {
+	const [a, b, c] = entangleText.split("\n---\n");
 	const content = a;
 	const config = yaml.load(b);
 	const code = CoffeeScript.compile(c, { bare: true });
@@ -112,9 +112,9 @@ function renderCode(data) {
 	};
 }
 
-export function parse(mangle) {
+export function parse(entangle) {
 	var data = {};
-	const { content, config, code } = split(mangle);
+	const { content, config, code } = split(entangle);
 	findVariables(content)(data);
 	attachConfig(config)(data);
 	const markup = renderContent(data)(content);

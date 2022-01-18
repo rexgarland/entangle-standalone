@@ -1,8 +1,8 @@
 {
-  "name": "mangle-standalone",
-  "version": "1.0.3",
+  "name": "entangle-standalone",
+  "version": "1.0.5",
   "main": "src/index.js",
-  "description": "Build a standalone html file from mangle",
+  "description": "Build a standalone html file from an Entangle doc",
   "type": "module",
   "directories": {
     "example": "examples"
